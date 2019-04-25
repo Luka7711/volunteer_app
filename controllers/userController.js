@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user')
+const bcrypt = require('bcryptjs')
+
 const Event = require('../models/event')
+const User = require('../models/user')
 
 router.get('/', (req, res)=>{
 	res.render('home.ejs')
@@ -15,11 +17,12 @@ router.get('/login', (req, res) => {
 
 router.get('/register', (req, res) => {
 
-  const msg = req.session.message
-  req.session.message = ""
-  res.render('users/register.ejs', {
-    message: msg
-  });
+//   const msg = req.session.message
+//   req.session.message = ""
+//   res.render('users/register.ejs', {
+//     message: msg
+//   });
+res.render('users/register.ejs')
 
 })
 
@@ -27,28 +30,28 @@ router.post('/login', (req, res, next) => {
   res.send(req.body)
 })
 
-router.post('/register', async (req, res, next) => {
-
+//Create Register Route
+router.post('/register', async (req, res) => {
+	const password = req.body.password
+	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+	const userDbEntry = {};
+	userDbEntry.username = req.body.username;
+	userDbEntry.password = passwordHash;
   try {
-    const found = await User.findOne({username: req.body.username})
-    console.log(found);
-    if(found !== null) {
-      req.session.message = "Username already taken."
-      res.redirect('/users/register')
-    }
-    else {
+
       const createdUser = await User.create(req.body)
-      req.session.loggedIn = true 
-      req.session.username = createdUser.username
-      req.session.message = "Thank you for registering, " + createdUser.username
-      res.redirect('/')
-    }
+      req.session.logged = true 
+      req.session.usersDbId = createdUser._id;
+      // console.log("Made user, now redirect: ")
+      res.redirect('/users')
 
   } catch(err) {
-    next(err)
+  	console.log("ERROR: ", err)
+    res.send(err)
   }
 
 })
+
 
 
 

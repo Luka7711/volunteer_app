@@ -3,10 +3,10 @@ const Event = require('./event');
 
 
 const userSchema = new mongoose.Schema({
-	username:{type:String, require:true},
-	password:{type:String, require:true},
-	img:String,
-	dateOfBirth:{type:Date, require:true},
+	username: {type:String, required: true},
+	password: {type:String, required: true},
+	img: String,
+	dateOfBirth: {type: Date, required: true},
 
 	eventsOwned:[{
 		type:mongoose.Schema.Types.ObjectId,
