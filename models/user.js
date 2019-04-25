@@ -8,11 +8,18 @@ const userSchema = new mongoose.Schema({
 	img:String,
 	dateOfBirth:{type:Date, require:true},
 
-	events:[{
+	eventsOwned:[{
+		type:mongoose.Schema.Types.ObjectId,
+		ref:'Event'
+	}],
+
+	eventsAttending: [{
 		type:mongoose.Schema.Types.ObjectId,
 		ref:'Event'
 	}]
 })
+
+
 
 const User = mongoose.model('User', userSchema);
 
