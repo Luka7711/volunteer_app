@@ -34,12 +34,15 @@ router.post('/login', (req, res, next) => {
 router.post('/register', async (req, res) => {
 	const password = req.body.password
 	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+	console.log(passwordHash);
 	const userDbEntry = {};
 	userDbEntry.username = req.body.username;
 	userDbEntry.password = passwordHash;
+	userDbEntry.dateOfBirth = req.body.dateOfBirth;
+
   try {
 
-      const createdUser = await User.create(req.body)
+      const createdUser = await User.create(userDbEntry)
       req.session.logged = true 
       req.session.usersDbId = createdUser._id;
       // console.log("Made user, now redirect: ")
