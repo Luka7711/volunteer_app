@@ -26,12 +26,12 @@ res.render('users/register.ejs')
 
 })
 
-
 //Create Register Route
 router.post('/register', async (req, res) => {
 	const password = req.body.password
 	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 	console.log(passwordHash);
+	
 	const userDbEntry = {};
 	userDbEntry.username = req.body.username;
 	userDbEntry.password = passwordHash;
@@ -99,6 +99,11 @@ router.get('/logout', (req, res) => {
 	})
 	
 })
+
+
+
+
+
 
 
 

@@ -1,0 +1,14 @@
+<%- include ../partials/header.ejs %>
+
+<h3>Organize a new volunteer event</h3>
+
+  <form action="/events" method="POST">
+    Name of event<input type="text" name="title" />
+    Where will it be hosted?<input type="text" name="location" />
+    How many people are needed<input type="text" name="numberOfPeople" />
+    Describe the event<textarea type="text" name="description"></textarea>
+    Image URL(optional)<input type="text" name="img" />
+    When will it be hosted? <input type="date" name="date" />
+      <button type="submit">Create Event</button>
+  </form>
+<%- include ../partials/footer.ejs %>
