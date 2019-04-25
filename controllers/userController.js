@@ -26,9 +26,6 @@ res.render('users/register.ejs')
 
 })
 
-router.post('/login', (req, res, next) => {
-  res.send(req.body)
-})
 
 //Create Register Route
 router.post('/register', async (req, res) => {
@@ -39,6 +36,7 @@ router.post('/register', async (req, res) => {
 	userDbEntry.username = req.body.username;
 	userDbEntry.password = passwordHash;
 	userDbEntry.dateOfBirth = req.body.dateOfBirth;
+	userDbEntry.img = req.body.img;
 
   try {
 
@@ -55,6 +53,52 @@ router.post('/register', async (req, res) => {
 
 })
 
+//Login Route
+
+router.post('/login', async (req, res) => {
+	try{
+		const foundUser = await User.findOne({'username': req.body.username});
+		if(foundUser){
+			if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
+				req.session.logged = true;
+				req.session.userDbId = foundUser._id;
+				console.log(req.session, 'login successful');
+				res.redirect('/users')
+
+		}else{
+			req.session.message = "Username or password incorrect"
+			req.redirect('/users/login')
+		}
+		}else {
+			req.session.message = "Username or password incorrect"
+			res.redirect('/users/login')
+		}
+
+	}catch(err) {
+		res.send(err)
+	}
+})
+
+
+router.get('/login', (req, res) => {
+	res.render('users/login.ejs', {
+		message: req.session.message
+	})
+})
+
+
+
+router.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		if(err){
+			res.send(err);
+			console.log(err);
+		}else {
+			res.redirect('/users/login')
+		}
+	})
+	
+})
 
 
 
