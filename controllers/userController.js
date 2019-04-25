@@ -27,7 +27,7 @@ res.render('users/register.ejs')
 })
 
 //Create Register Route
-router.post('/register', async (req, res) => {
+router.post('/register', async (req, res, next) => {
 	const password = req.body.password
 	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 	console.log(passwordHash);
@@ -48,14 +48,14 @@ router.post('/register', async (req, res) => {
 
   } catch(err) {
   	console.log("ERROR: ", err)
-    res.send(err)
+    next(err)
   }
 
 })
 
 //Login Route
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
 	try{
 		const foundUser = await User.findOne({'username': req.body.username});
 		if(foundUser){
@@ -75,7 +75,7 @@ router.post('/login', async (req, res) => {
 		}
 
 	}catch(err) {
-		res.send(err)
+		next(err)
 	}
 })
 

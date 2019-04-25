@@ -1,0 +1,27 @@
+
+<%- include ../partials/header.ejs %>
+
+<nav>
+	<ul>
+		<li>
+			<a href="/events/new">Create New Event</a>
+		</li>
+
+		<li>
+			<a href="/users">Home</a>
+		</li>
+
+	</ul>
+
+</nav>
+
+
+<% for (let i = 0; i < event.length; i++) {%>
+
+<p><%= event[i].title%></p>
+<p><%= event[i].date %></p>
+<p><%=event[i].description %></p>
+
+<% } %>
+
+<%- include ../partials/footer.ejs %>

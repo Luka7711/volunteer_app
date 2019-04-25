@@ -27,10 +27,25 @@ router.post('/', async (req, res) => { console.log(req.body);
 		console.log(createdEvent);
 		
 		res.redirect('/events')
-	}catch (err){
+	} catch (err){
 		res.send(err)
 	}
 })
+
+//Index route
+
+router.get('/', async (req, res) => {
+	try {
+		const foundEvents = await Event.find({})
+		res.render('events/index.ejs', {
+			event:foundEvents
+		})
+	} catch(err){
+		res.send(err)
+	}
+	
+})
+
 
 
 
