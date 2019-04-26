@@ -58,17 +58,19 @@ router.post('/register', async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
 	try{
 		const foundUser = await User.findOne({'username': req.body.username});
+		console.log(foundUser)
 		if(foundUser){
 			if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
 				req.session.logged = true;
 				req.session.userDbId = foundUser._id;
 				console.log(req.session, 'login successful');
+				console.log('id', foundUser._id)
 				res.redirect('/users')
 
-		}else{
-			req.session.message = "Username or password incorrect"
-			req.redirect('/users/login')
-		}
+			}else{
+				req.session.message = "Username or password incorrect"
+				req.redirect('/users/login')
+			}
 		}else {
 			req.session.message = "Username or password incorrect"
 			res.redirect('/users/login')
@@ -98,6 +100,14 @@ router.get('/logout', (req, res) => {
 		}
 	})
 	
+})
+
+//show all events of user on his page
+router.get('/:id', async(req, res)=>{
+	//find user
+	//create key 
+	//populate events
+	//redirect to show page 
 })
 
 

@@ -7,15 +7,17 @@ const eventSchema = new mongoose.Schema({
 	description: {type: String, required: true},
 	img: String,
 	date: {type: Date, required: true},
+	
+	///the ID of user who created event
 	organizer: {
-		///the ID of user who created event
 		type: mongoose.Schema.Types.ObjectId,
 		ref:'User'
 	},
+	
+	//an array of user IDs of users who are attending the event
 	attending: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref:'User'
-		//an array of user IDs of users who are attending the event
 	}]
 })
 
