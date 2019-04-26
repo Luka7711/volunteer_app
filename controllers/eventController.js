@@ -12,10 +12,11 @@ router.get('/new', (req, res) => {
 /// when user creates own event, create route
 router.post('/', async (req, res, next) => { 
 	try {
+
 		console.log("\nreq.session.userDbId: in event create route:")
-		console.log(req.session.userDbId)
+		console.log(req.session.usersDbId)
 		//find this user and add data into
-		const foundUser = await User.findById(req.session.userDbId)
+		const foundUser = await User.findById(req.session.usersDbId)
 		console.log('\nhere is foundUser:')
 		console.log(foundUser);
 		/// fill out the event fields
@@ -29,16 +30,17 @@ router.post('/', async (req, res, next) => {
 		// TODO:
 		// push event into eventsOwned array on foundUser
 		// save foundUser
-		const foundEvent = await Event.findById(createdEvent._id)
-
-		foundUser.eventsOwned = foundEvent
-		await foundEvent.save()
-
-		console.log("\n Here is the created event");
-		console.log(createdEvent);
-		console.log("this is :", foundUser)
 		
+		const foundEvent = await Event.findById(createdEvent._id)
+		console.log('this is found event:')
+		console.log(foundEvent)
+		
+		foundUser.eventsOwned.push(foundEvent)
+		
+		await foundUser.save()
 		res.redirect('/events')
+		
+	
 	} catch (err){
 		next(err)
 	}

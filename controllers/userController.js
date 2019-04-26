@@ -17,11 +17,6 @@ router.get('/login', (req, res) => {
 
 router.get('/register', (req, res) => {
 
-//   const msg = req.session.message
-//   req.session.message = ""
-//   res.render('users/register.ejs', {
-//     message: msg
-//   });
 res.render('users/register.ejs')
 
 })
@@ -44,6 +39,8 @@ router.post('/register', async (req, res, next) => {
       req.session.logged = true 
       req.session.usersDbId = createdUser._id;
       // console.log("Made user, now redirect: ")
+      console.log('this is req. session when you registering')
+      console.log(req.session)
       res.redirect('/users')
 
   } catch(err) {
@@ -65,6 +62,7 @@ router.post('/login', async (req, res, next) => {
 				req.session.userDbId = foundUser._id;
 				console.log(req.session, 'login successful');
 				console.log('id', foundUser._id)
+
 				res.redirect('/users')
 
 			}else{
