@@ -1,6 +1,14 @@
 <%- include ./partials/header.ejs %>
-	<p>Welcome</p>
+	<h1>Welcome to home page</h1>
 <a href="/events/new">Organize your volunteer event</a> <br>
-<a href="/users/logout">Sign Out</a>
-	
+
+<% if(loggedIn){ %>
+					<!-- 
+	<a href="/users/user._id">See My Events</a> -->
+	<a href="/users/logout">Sign Out</a><br>
+<% }else {%>	
+	 <a href="/users/login">Sign In</a>
+	 <p>Don't have an account?</p>
+	 <a href="/users/register">Sign Up Here</a>
+<% } %>
 <%- include ./partials/footer.ejs %>

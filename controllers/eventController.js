@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
 		console.log("\nreq.session.userDbId: in event create route:")
 		console.log(req.session.usersDbId)
 		//find this user and add data into
-		const foundUser = await User.findById(req.session.usersDbId)
+		const foundUser = await User.findById(req.session.userDbId)
 		console.log('\nhere is foundUser:')
 		console.log(foundUser);
 		/// fill out the event fields
@@ -26,15 +26,18 @@ router.post('/', async (req, res, next) => {
 
 		createdEvent.organizer = foundUser
 		await createdEvent.save()
+		console.log('this is created event')
+		console.log(createdEvent)
 
 		// TODO:
 		// push event into eventsOwned array on foundUser
 		// save foundUser
 		
 		const foundEvent = await Event.findById(createdEvent._id)
-		console.log('this is found event:')
+		console.log('this is event:')
 		console.log(foundEvent)
-		
+		console.log('this is user')
+		console.log(foundUser)
 		foundUser.eventsOwned.push(foundEvent)
 		
 		await foundUser.save()

@@ -5,9 +5,33 @@ const bcrypt = require('bcryptjs')
 const Event = require('../models/event')
 const User = require('../models/user')
 
-router.get('/', (req, res)=>{
-	res.render('home.ejs')
+router.get('/', async(req, res, next)=>{
+	//find one User
+	//access user profile from home page
+	try{
+	const foundUser = await User.findById(req.session.userDbId)
+	console.log('this is the user we lookin for:')
+	console.log(foundUser)
+	res.render('home.ejs', {
+		loggedIn: req.session.logged,
+		user: foundUser
+	})
+	}catch(err){
+	next(err)
+}
 })
+
+// router.get('/:id', async(req, res, next) => {
+// 	//find all events
+// 	//render events on userevents.ejs
+// 	try {
+// 		const foundEvent = await Event.findById(req.session.eventDbId)
+// 		console.log(foundEvent)
+// 		event: foundEvent
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
 
 
 router.get('/login', (req, res) => {
@@ -37,7 +61,7 @@ router.post('/register', async (req, res, next) => {
 
       const createdUser = await User.create(userDbEntry)
       req.session.logged = true 
-      req.session.usersDbId = createdUser._id;
+      req.session.userDbId = createdUser._id;
       // console.log("Made user, now redirect: ")
       console.log('this is req. session when you registering')
       console.log(req.session)
@@ -67,7 +91,7 @@ router.post('/login', async (req, res, next) => {
 
 			}else{
 				req.session.message = "Username or password incorrect"
-				req.redirect('/users/login')
+				res.redirect('/users/login')
 			}
 		}else {
 			req.session.message = "Username or password incorrect"
