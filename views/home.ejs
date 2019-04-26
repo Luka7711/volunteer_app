@@ -3,8 +3,8 @@
 <a href="/events/new">Organize your volunteer event</a> <br>
 
 <% if(loggedIn){ %>
-					<!-- 
-	<a href="/users/user._id">See My Events</a> -->
+					
+	<a href="/users/<%=user._id%>">See My Events</a>
 	<a href="/users/logout">Sign Out</a><br>
 <% }else {%>	
 	 <a href="/users/login">Sign In</a>

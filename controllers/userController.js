@@ -21,17 +21,7 @@ router.get('/', async(req, res, next)=>{
 }
 })
 
-// router.get('/:id', async(req, res, next) => {
-// 	//find all events
-// 	//render events on userevents.ejs
-// 	try {
-// 		const foundEvent = await Event.findById(req.session.eventDbId)
-// 		console.log(foundEvent)
-// 		event: foundEvent
-// 	} catch(err) {
-// 		next(err)
-// 	}
-// })
+
 
 
 router.get('/login', (req, res) => {
@@ -44,6 +34,8 @@ router.get('/register', (req, res) => {
 res.render('users/register.ejs')
 
 })
+
+
 
 //Create Register Route
 router.post('/register', async (req, res, next) => {
@@ -124,14 +116,28 @@ router.get('/logout', (req, res) => {
 	
 })
 
-//show all events of user on his page
-router.get('/:id', async(req, res)=>{
-	//find user
-	//create key 
-	//populate events
-	//redirect to show page 
-})
 
+router.get('/:id', async(req, res, next) => {
+	//find all events
+	//render events on userevents.ejs
+	try {
+		//Lana when you wake up populate event bitch to user
+		const foundUser = await User.findById(req.session.userDbId)
+		console.log('This is your found user');
+		console.log(foundUser)
+		const foundEvents = foundUser.eventsOwned
+		console.log('this is your event');
+		console.log(foundEvents);
+		res.render('users/userevents.ejs', {
+			events: foundEvents
+
+		})
+		event: foundUser
+
+	} catch(err) {
+		next(err)
+	}
+})
 
 
 

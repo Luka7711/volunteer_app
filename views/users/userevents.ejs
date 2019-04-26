@@ -1,7 +1,17 @@
 <%- include ../partials/header.ejs %>
 
-
-
+<%for (let i = 0; i <events.length; i++) {%>
+	<p>This is the title</p>
+	<p><%=events[i].title %></p>
+	<p>This is description</p>
+	<p><%=events[i].description %></p>
+	<p>This is the date</p>
+	<p><%=events[i].date%></p>
+	<p>Number of people</p>
+	<p><%=events[i].numberOfPeople%></p>
+	<p>Image</p>
+	<img src="<%=events[i].img%>">
+<%}%>
 
 
 <%- include ../partials/footer.ejs %>
