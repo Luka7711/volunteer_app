@@ -95,7 +95,7 @@ router.put('/:id', (req, res) => {
 			if (err){
 				res.send(err)
 			}else{
-				res.redirect('/users/:id')
+				res.redirect('/events')
 			}
 		})
 })

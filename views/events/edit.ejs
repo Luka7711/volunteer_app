@@ -1,10 +1,14 @@
 <%- include ../partials/header.ejs %>
 
 <h1>Edit Page</h1>
-<form action="/photos/<%=photo._id%>?_method=PUT" method="POST">
+<form action="/events/<%=event._id%>?_method=PUT" method="POST">
+			Name of Event:<input type="text" name="title" value="<%=event.title%>">
 			Description:<input type="text" name="description" value="<%=event.description%>">
-			Image:<input type="text" name="img" value="<%=event.image%>">
-			<input type="submit" value="Update Photo"/>
+			Location:<input type="text" name="location" value="<%=event.location%>">
+			Number of People:<input type="text" name="numberOfPeople" value="<%=event.numberOfPeople%>">
+			Date/time:<input type="text" name="date" value="<%=event.date%>">
+			Image:<input type="text" name="img" value="<%=event.img%>">
+			<input type="submit" value="Update Event"/>
 
 		</form>
 
