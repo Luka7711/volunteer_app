@@ -63,6 +63,42 @@ router.get('/', async (req, res) => {
 	
 })
 
+//Edit Route
+
+router.get('/:id/edit', (req, res) => {
+	//
+	Event.findById(req.params.id, (err, eventToEdit) => {
+		if (err) {
+			res.send(err)
+		} else {
+			res.render('events/edit.ejs', {
+				
+				event: eventToEdit
+
+			})
+		}
+	})
+	
+})
+
+//update
+router.get('/:id/edit', (req, res) => {
+	res.render('events/edit.ejs', {
+		event: Event[req.params.id],
+		id: req.params.id
+	})
+})
+
+router.put('/:id', (req, res) => {
+	Event.findByIdAndUpdate(req.params.id, 
+		req.body, (err, updatedPhoto)=>{
+			if (err){
+				res.send(err)
+			}else{
+				res.redirect('/users/:id')
+			}
+		})
+})
 
 
 

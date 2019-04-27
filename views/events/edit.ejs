@@ -1,0 +1,12 @@
+<%- include ../partials/header.ejs %>
+
+<h1>Edit Page</h1>
+<form action="/photos/<%=photo._id%>?_method=PUT" method="POST">
+			Description:<input type="text" name="description" value="<%=event.description%>">
+			Image:<input type="text" name="img" value="<%=event.image%>">
+			<input type="submit" value="Update Photo"/>
+
+		</form>
+
+
+		<%- include ../partials/footer.ejs %>

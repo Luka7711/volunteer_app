@@ -117,6 +117,8 @@ router.get('/logout', (req, res) => {
 })
 
 
+
+
 router.get('/:id', (req, res) => {
 	//finding a user by id
 	User.findById(req.params.id)
@@ -130,29 +132,9 @@ router.get('/:id', (req, res) => {
 	//render on userevents.ejs
 
 })
-// router.get('/:id', async(req, res, next) => {
-// 	//find all events
-// 	//render events on userevents.ejs
-// 	try {
-// 		//Lana when you wake up populate event bitch to user
-// 		const foundUser = await User.findById(req.session.userDbId)
-// 		.populate({path: 'eventsOwned'})
-// 		.exec()
-// 		console.log('This is your found user');
-// 		console.log(foundUser)
-// 		const foundEvents = foundUser.eventsOwned
-// 		console.log('this is your event');
-// 		console.log(foundEvents);
-// 		res.render('users/userevents.ejs', {
-// 			events: foundEvents
 
-// 		})
-// 		event: foundUser
 
-// 	} catch(err) {
-// 		next(err)
-// 	}
-// })
+
 
 router.get('')
 

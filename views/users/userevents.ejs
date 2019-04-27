@@ -11,6 +11,11 @@
 	<p><%=allEvents[i].numberOfPeople%></p>
 	<p>Image</p>
 	<img src="<%=allEvents[i].img%>">
+	 <form action="/events/<%=allEvents._id%>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+     <a href="/events/<%=allEvents._id%>/edit">Edit</a>
+ </form>
+
 <%}%>
 
 
