@@ -117,29 +117,44 @@ router.get('/logout', (req, res) => {
 })
 
 
-router.get('/:id', async(req, res, next) => {
-	//find all events
-	//render events on userevents.ejs
-	try {
-		//Lana when you wake up populate event bitch to user
-		const foundUser = await User.findById(req.session.userDbId)
-		console.log('This is your found user');
-		console.log(foundUser)
-		const foundEvents = foundUser.eventsOwned
-		console.log('this is your event');
-		console.log(foundEvents);
+router.get('/:id', (req, res) => {
+	//finding a user by id
+	User.findById(req.params.id)
+	.populate('eventsOwned')
+	.exec((err, foundUser) => {
 		res.render('users/userevents.ejs', {
-			events: foundEvents
-
+			allEvents: foundUser.eventsOwned
 		})
-		event: foundUser
+	})
+	//populate all owned events
+	//render on userevents.ejs
 
-	} catch(err) {
-		next(err)
-	}
 })
+// router.get('/:id', async(req, res, next) => {
+// 	//find all events
+// 	//render events on userevents.ejs
+// 	try {
+// 		//Lana when you wake up populate event bitch to user
+// 		const foundUser = await User.findById(req.session.userDbId)
+// 		.populate({path: 'eventsOwned'})
+// 		.exec()
+// 		console.log('This is your found user');
+// 		console.log(foundUser)
+// 		const foundEvents = foundUser.eventsOwned
+// 		console.log('this is your event');
+// 		console.log(foundEvents);
+// 		res.render('users/userevents.ejs', {
+// 			events: foundEvents
 
+// 		})
+// 		event: foundUser
 
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
+
+router.get('')
 
 
 
