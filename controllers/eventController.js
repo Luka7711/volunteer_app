@@ -63,6 +63,25 @@ router.get('/', async (req, res) => {
 	
 })
 
+//edit owning event
+
+router.delete('/:id', (req, res) => {
+	Event.findByIdAndRemove(req.params.id, (err, deletedEvent) => {
+		console.log('deleted event is:')
+		console.log(deletedEvent)
+		User.findOne({'eventsOwned':req.params.id}, (err, foundUser) =>{
+			if(err){
+				res.send(err)
+			}else{
+				foundUser.eventsOwned.remove(req.params.id)
+				foundUser.save((err, updatedUser) => {
+					res.redirect('/users/' + req.session.userDbId)
+				})
+			}
+		})
+	})
+})
+
 
 
 

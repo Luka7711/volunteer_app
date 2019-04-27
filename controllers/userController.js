@@ -123,38 +123,14 @@ router.get('/:id', (req, res) => {
 	.populate('eventsOwned')
 	.exec((err, foundUser) => {
 		res.render('users/userevents.ejs', {
-			allEvents: foundUser.eventsOwned
+			allEvents: foundUser.eventsOwned,
+			user:foundUser
 		})
+		console.log(foundUser)
 	})
-	//populate all owned events
-	//render on userevents.ejs
 
 })
-// router.get('/:id', async(req, res, next) => {
-// 	//find all events
-// 	//render events on userevents.ejs
-// 	try {
-// 		//Lana when you wake up populate event bitch to user
-// 		const foundUser = await User.findById(req.session.userDbId)
-// 		.populate({path: 'eventsOwned'})
-// 		.exec()
-// 		console.log('This is your found user');
-// 		console.log(foundUser)
-// 		const foundEvents = foundUser.eventsOwned
-// 		console.log('this is your event');
-// 		console.log(foundEvents);
-// 		res.render('users/userevents.ejs', {
-// 			events: foundEvents
 
-// 		})
-// 		event: foundUser
-
-// 	} catch(err) {
-// 		next(err)
-// 	}
-// })
-
-router.get('')
 
 
 

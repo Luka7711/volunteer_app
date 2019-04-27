@@ -11,7 +11,12 @@
 	<p><%=allEvents[i].numberOfPeople%></p>
 	<p>Image</p>
 	<img src="<%=allEvents[i].img%>">
+
+	<form action='/events/<%= allEvents[i]._id %>?_method=DELETE' method='POST'>
+		<button>Cancel Event</button>
+	</form>
 <%}%>
 
+	
 
 <%- include ../partials/footer.ejs %>
