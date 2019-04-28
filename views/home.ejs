@@ -12,6 +12,8 @@
 	 <a href="/users/register">Sign Up Here</a>
 <% } %>
 	
+
+
 	
 	<% if(allEvents){ %>
 		<% for (let j = 0; j < allEvents.length; j++) { -%>
@@ -22,6 +24,7 @@
 				<p><%= allEvents[j].date %></p>
 			</div>		
 		<%} %>
+		<a href="/events">see more</a>
 	<% } %>
 
 <%- include ./partials/footer.ejs %>

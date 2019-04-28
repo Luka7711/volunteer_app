@@ -6,7 +6,12 @@ const User = require('../models/user')
 
 //Create new event
 router.get('/new', (req, res) => {
+	if(req.session.logged){
 	res.render('events/new.ejs')
+}else{
+	req.session.message = 'Organize an event? Sign in or Sign up'
+	res.redirect('/users/login')
+}
 })
 
 /// when user creates own event, create route

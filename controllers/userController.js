@@ -25,7 +25,9 @@ router.get('/', async(req, res, next)=>{
 
 
 router.get('/login', (req, res) => {
-	res.render('users/login.ejs')
+	res.render('users/login.ejs', {
+		message:req.session.message
+	})
 })
 
 
