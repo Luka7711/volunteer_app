@@ -59,8 +59,12 @@ router.post('/', async (req, res, next) => {
 router.get('/', async (req, res) => {
 	try {
 		const foundEvents = await Event.find({})
+		const foundUser = await User.findById(req.session.userDbId)
+		console.log('this is current user')
+		console.log(foundUser)
 		res.render('events/index.ejs', {
-			event:foundEvents
+			event:foundEvents,
+			user:foundUser
 		})
 	} catch(err){
 		res.send(err)

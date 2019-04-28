@@ -118,22 +118,40 @@ router.get('/logout', (req, res) => {
 	
 })
 
-
+//populating multiple events in user database
 router.get('/:id', (req, res) => {
-	//finding a user by id
+	if(req.session.logged){
 	User.findById(req.params.id)
 	.populate('eventsOwned')
+	.populate('eventsAttending')
 	.exec((err, foundUser) => {
 		res.render('users/userevents.ejs', {
-			allEvents: foundUser.eventsOwned,
+			allEventsOwn: foundUser.eventsOwned,
+			allEventsAtt:foundUser.eventsAttending,
 			user:foundUser
 		})
 		console.log(foundUser)
 	})
-
+}
 })
 
-
+//participate in someones event
+router.get('/attend/:id', async(req, res, next) => {
+	//find current user
+	//add id to addendin event
+	try{
+	const currentUser = await User.findById(req.session.userDbId)
+	const attendEvent = await Event.findById(req.params.id)
+	console.log('this is current event')
+	console.log(attendEvent)
+	currentUser.eventsAttending.push(attendEvent)
+	await currentUser.save()
+	console.log(currentUser)
+	res.send('success')
+}catch(err){
+	next(err)
+}
+})
 
 
 

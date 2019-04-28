@@ -1,21 +1,30 @@
 <%- include ../partials/header.ejs %>
 
-<%for (let i = 0; i <allEvents.length; i++) {%>
-	<p>This is the title</p>
-	<p><%=allEvents[i].title %></p>
-	<p>This is description</p>
-	<p><%=allEvents[i].description %></p>
-	<p>This is the date</p>
-	<p><%=allEvents[i].date%></p>
+<h2>Hosting Events</h2>
+<%for (let i = 0; i <allEventsOwn.length; i++) {%>
+	<p>Title:</p>
+	<p><%=allEventsOwn[i].title %></p>
+	<p>Description:</p>
+	<p><%=allEventsOwn[i].description %></p>
+	<p>Date:</p>
+	<p><%=allEventsOwn[i].date%></p>
 	<p>Number of people</p>
-	<p><%=allEvents[i].numberOfPeople%></p>
-	<p>Image</p>
-	<img src="<%=allEvents[i].img%>">
+	<p><%=allEventsOwn[i].numberOfPeople%></p>
+	<img src="<%=allEventsOwn[i].img%>">
 
-	<form action='/events/<%= allEvents[i]._id %>?_method=DELETE' method='POST'>
+	<form action='/events/<%= allEventsOwn[i]._id %>?_method=DELETE' method='POST'>
 		<button>Cancel Event</button>
 	</form>
+	
 <%}%>
+
+<h2>Events to visit</h2>
+
+<% for (var i = 0; i < allEventsAtt.length; i++) { -%>
+	<p><%=allEventsAtt[i].title%></p>
+	<p><%= allEventsAtt[i].description %></p>
+	<img src="<%=allEventsAtt[i].img %>">
+<% } -%>
 
 	
 

@@ -17,11 +17,11 @@
 
 
 <% for (let i = 0; i < event.length; i++) {%>
-
-<p><%= event[i].title%></p>
-<p><%= event[i].date %></p>
-<p><%=event[i].description %></p>
-
+	<p><%= event[i].title%></p>
+	<p><%= event[i].date %></p>
+	<p><%=event[i].description %></p>
+	<a href="/users/attend/<%=event[i]._id%>">participate</a>
+<hr>
 <% } %>
 
 <%- include ../partials/footer.ejs %>
