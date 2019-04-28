@@ -11,4 +11,17 @@
 	 <p>Don't have an account?</p>
 	 <a href="/users/register">Sign Up Here</a>
 <% } %>
+	
+	
+	<% if(allEvents){ %>
+		<% for (let j = 0; j < allEvents.length; j++) { -%>
+			<div class="container_img">
+				<img class="event_image" src="<%= allEvents[j].img %>"
+				style="width:250px; height:auto">
+				<p><strong><%= allEvents[j].title %></strong></p>
+				<p><%= allEvents[j].date %></p>
+			</div>		
+		<%} %>
+	<% } %>
+
 <%- include ./partials/footer.ejs %>

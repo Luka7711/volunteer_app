@@ -10,18 +10,18 @@ router.get('/', async(req, res, next)=>{
 	//access user profile from home page
 	try{
 	const foundUser = await User.findById(req.session.userDbId)
-	console.log('this is the user we lookin for:')
-	console.log(foundUser)
+	const events = await Event.find({})
+	console.log('this is all events in DB')
+	console.log(events)
 	res.render('home.ejs', {
 		loggedIn: req.session.logged,
-		user: foundUser
+		user: foundUser,
+		allEvents: events
 	})
 	}catch(err){
 	next(err)
 }
 })
-
-
 
 
 router.get('/login', (req, res) => {
