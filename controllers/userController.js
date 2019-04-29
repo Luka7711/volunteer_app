@@ -100,13 +100,6 @@ router.post('/login', async (req, res, next) => {
 })
 
 
-router.get('/login', (req, res) => {
-  res.render('users/login.ejs', {
-    message: req.session.message
-  })
-})
-
-
 
 router.get('/logout', (req, res) => {
   req.session.destroy((err) => {
@@ -121,7 +114,7 @@ router.get('/logout', (req, res) => {
 })
 
 
-//populating multiple events in user database
+// populating multiple events in user database
 router.get('/:id', (req, res) => {
 	if(req.session.logged){
 	User.findById(req.params.id)

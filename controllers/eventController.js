@@ -80,6 +80,7 @@ router.get('/', async (req, res, next) => {
 	} catch(err){
 		next(err)
 	}
+})
 	
 
 //Index for Home Page:
@@ -164,6 +165,17 @@ router.get('/:id/edit', (req, res) => {
   
 })
 
+router.put('/:id', (req, res) => {
+  Event.findByIdAndUpdate(req.params.id, 
+    req.body, (err, updatedPhoto) => {
+      if (err){
+        res.send(err)
+      }else{
+        res.redirect('/events')
+      }
+    })
+})
+
 
 //unable to visit an event
 //find current user
@@ -184,24 +196,8 @@ router.delete('/attend/:id', async(req, res, next) => {
 })
 
 
-//update
-router.get('/:id/edit', (req, res) => {
-  res.render('events/edit.ejs', {
-    event: Event[req.params.id],
-    id: req.params.id
-  })
-})
 
-router.put('/:id', (req, res) => {
-  Event.findByIdAndUpdate(req.params.id, 
-    req.body, (err, updatedPhoto)=>{
-      if (err){
-        res.send(err)
-      }else{
-        res.redirect('/events')
-      }
-    })
-})
+
 
 
 

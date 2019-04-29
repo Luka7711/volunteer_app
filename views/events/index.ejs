@@ -22,8 +22,8 @@
 	<p>Location: <%=event[i].location %></p>
 	<p>Number of people needed: <%=event[i].numberOfPeople%></p>
 	<p><img src="<%=event[i].img %>"></p> 
-		<div id ="participate" >
-		<a href="/users/attend/<%=event[i]._id%>">participate</a></div>	
+	
+
 
 		 <% const index = attendIds.findIndex(userEventId => { %>
 		 <% if(userEventId.toString() === event[i]._id.toString()){ %>
