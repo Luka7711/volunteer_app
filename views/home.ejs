@@ -9,39 +9,6 @@
 -->
 
 
-<div id="eventsHomeLayout">
-	<% for (let i = 0; i < 3; i++){ %>
-	<!-- 	let howmany = 6;
-		// if there are less than 6 events, make howmany be event.length -->
-		
-			<div class="homeEvents">
-				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
-				<p><%=allEvents[i].description %></p>
-				<p><img src="<%=allEvents[i].img %>"></p> 
-				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
-			</div>
-		
-	<% }%>
-</div>
-
-<div id="eventsHomeLayout2">
-	<% for (let i = 3; i < 6; i++){ %>
-	<!-- 	let howmany = 6;
-		// if there are less than 6 events, make howmany be event.length -->
-		
-			<div class="homeEvents">
-				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
-				<p><%=allEvents[i].description %></p>
-				<p><img src="<%=allEvents[i].img %>"></p> 
-				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
-			</div>
-		
-	<% }%>
-</div>
-
-
 <% if(loggedIn){ %>
 	<a href="/events/new">Organize your volunteer event</a> <br>	
 	<a href="/users/<%=user._id%>">See My Events</a></br>
