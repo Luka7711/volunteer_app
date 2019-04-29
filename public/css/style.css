@@ -85,14 +85,17 @@ a:hover {
 
 
 #eventsHomeLayout {
-	height: 2000px;
-	width: 2000px;
+	height: 500px;
+	width: 1000px;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: nowrap;
-   overflow-x: auto;
-   -webkit-overflow-scrolling: touch;
-   -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+#eventsHomeLayout2 {
+	height: 500px;
+	width: 1000px;
+	display: flex;
+	flex-direction: row;
 }
 
 .homeEvents {
@@ -106,7 +109,7 @@ a:hover {
 	width: 500px;
 	height: 400px;
 	overflow: hidden;
-	
+
 }
 
 #participate {
