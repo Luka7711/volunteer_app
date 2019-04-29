@@ -1,29 +1,31 @@
-
 <%- include ../partials/header.ejs %>
-
+<h1>All Upcoming events</h1>
 <nav>
-	<ul>
-		<li>
-			<a href="/events/new">Create New Event</a>
-		</li>
+  <ul>
+    <li>
+      <a href="/events/new">Create New Event</a>
+    </li>
 
-		<li>
-			<a href="/users">Home</a>
-		</li>
+    <li>
+      <a href="/users">Home</a>
+    </li>
 
-	</ul>
+  </ul>
 
 </nav>
 
 
+<% for (let i = 0; i < event.length; i++) {%>
+	<div class="indexEvents"><p><%= event[i].title%></p>
+	<p>When: <%= event[i].date %></p>
+	<p>Description: <%=event[i].description %></p>
+	<p>Location: <%=event[i].location %></p>
+	<p>Number of people needed: <%=event[i].numberOfPeople%></p>
+	<p><img src="<%=event[i].img %>"></p> 
+		<div id ="participate" >
+		<a href="/users/attend/<%=event[i]._id%>">participate</a></div>	
 
-<% for (let i = 0; i < event.length; i++) { %>
-	<p><%= event[i].title%></p>
-	<p><%= event[i].date %></p>
-	<p><%=event[i].description %></p>
-	
-
-	 <% const index = attendIds.findIndex(userEventId => { %>
+		 <% const index = attendIds.findIndex(userEventId => { %>
 		 <% if(userEventId.toString() === event[i]._id.toString()){ %>
 		 			<% return true %>
 		 		<% } %>
@@ -32,8 +34,8 @@
 		 	<% if(index === -1){ %>
 		 		<!--conditional based on value of variable index (index will be negative one if no match in attendIds -->
 		 		<a href="/users/attend/<%=event[i]._id%>">participate</a>
-			<% } %> 							
+			<% } %> 	
+	</div>
+<%}%>
 
-		<hr>
-	<%}%>
-<%- include ../partials/footer.ejs %>
+	<%- include ../partials/footer.ejs %>

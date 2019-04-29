@@ -1,11 +1,11 @@
 <%- include ../partials/header.ejs %>
 
-
+<h1>Create your account here</h1>
 <form action="/users/register" method="POST">
-  <input type="text" name="username" placeholder="username">
-  <input type="password" name="password" placeholder="password">
-  <input type="date" name="dateOfBirth" placeholder="dob">
-  <input type="text" name="img" placeholder="URL to your picture">
+  <p>What will be your username?</p><input type="text" name="username" placeholder="username">
+  <p>What will be your password?</p><input type="password" name="password" placeholder="password">
+  <p>Your date of birth</p><input type="date" name="dateOfBirth" placeholder="dob">
+  <p><input type="text" name="img" placeholder="URL to your picture"></p>
 
   <button>Register</button>
 </form>

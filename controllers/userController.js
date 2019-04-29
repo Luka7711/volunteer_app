@@ -5,14 +5,16 @@ const bcrypt = require('bcryptjs')
 const Event = require('../models/event')
 const User = require('../models/user')
 
+
 router.get('/', async(req, res, next)=>{
 	//find one User
 	//access user profile from home page
 	try{
 	const foundUser = await User.findById(req.session.userDbId)
 	const events = await Event.find({})
-	// console.log('this is all events in DB')
-	// console.log(events)
+	console.log('this is all events in DB')
+	console.log(events)
+
 	res.render('home.ejs', {
 		loggedIn: req.session.logged,
 		user: foundUser,
@@ -41,15 +43,15 @@ res.render('users/register.ejs')
 
 //Create Register Route
 router.post('/register', async (req, res, next) => {
-	const password = req.body.password
-	const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-	console.log(passwordHash);
-	
-	const userDbEntry = {};
-	userDbEntry.username = req.body.username;
-	userDbEntry.password = passwordHash;
-	userDbEntry.dateOfBirth = req.body.dateOfBirth;
-	userDbEntry.img = req.body.img;
+  const password = req.body.password
+  const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+  console.log(passwordHash);
+  
+  const userDbEntry = {};
+  userDbEntry.username = req.body.username;
+  userDbEntry.password = passwordHash;
+  userDbEntry.dateOfBirth = req.body.dateOfBirth;
+  userDbEntry.img = req.body.img;
 
   try {
 
@@ -62,7 +64,7 @@ router.post('/register', async (req, res, next) => {
       res.redirect('/users')
 
   } catch(err) {
-  	console.log("ERROR: ", err)
+    console.log("ERROR: ", err)
     next(err)
   }
 
@@ -71,52 +73,53 @@ router.post('/register', async (req, res, next) => {
 //Login Route
 
 router.post('/login', async (req, res, next) => {
-	try{
-		const foundUser = await User.findOne({'username': req.body.username});
-		console.log(foundUser)
-		if(foundUser){
-			if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
-				req.session.logged = true;
-				req.session.userDbId = foundUser._id;
-				console.log(req.session, 'login successful');
-				console.log('id', foundUser._id)
+  try{
+    const foundUser = await User.findOne({'username': req.body.username});
+    console.log(foundUser)
+    if(foundUser){
+      if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
+        req.session.logged = true;
+        req.session.userDbId = foundUser._id;
+        console.log(req.session, 'login successful');
+        console.log('id', foundUser._id)
 
-				res.redirect('/users')
+        res.redirect('/users')
 
-			}else{
-				req.session.message = "Username or password incorrect"
-				res.redirect('/users/login')
-			}
-		}else {
-			req.session.message = "Username or password incorrect"
-			res.redirect('/users/login')
-		}
+      }else{
+        req.session.message = "Username or password incorrect"
+        res.redirect('/users/login')
+      }
+    }else {
+      req.session.message = "Username or password incorrect"
+      res.redirect('/users/login')
+    }
 
-	}catch(err) {
-		next(err)
-	}
+  }catch(err) {
+    next(err)
+  }
 })
 
 
 router.get('/login', (req, res) => {
-	res.render('users/login.ejs', {
-		message: req.session.message
-	})
+  res.render('users/login.ejs', {
+    message: req.session.message
+  })
 })
 
 
 
 router.get('/logout', (req, res) => {
-	req.session.destroy((err) => {
-		if(err){
-			res.send(err);
-			console.log(err);
-		}else {
-			res.redirect('/users/login')
-		}
-	})
-	
+  req.session.destroy((err) => {
+    if(err){
+      res.send(err);
+      console.log(err);
+    }else {
+      res.redirect('/users/login')
+    }
+  })
+  
 })
+
 
 //populating multiple events in user database
 router.get('/:id', (req, res) => {
@@ -152,6 +155,7 @@ router.get('/attend/:id', async(req, res, next) => {
 	next(err)
 }
 })
+
 
 
 

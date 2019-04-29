@@ -1,34 +1,32 @@
 <%- include ../partials/header.ejs %>
-
-<h2>Hosting Events</h2>
+<h1>Events I organized</h1>
 <%for (let i = 0; i <allEventsOwn.length; i++) {%>
-	<p>Title:</p>
-	<p><%=allEventsOwn[i].title %></p>
-	<p>Description:</p>
-	<p><%=allEventsOwn[i].description %></p>
-	<p>Date:</p>
-	<p><%=allEventsOwn[i].date%></p>
-	<p>Number of people</p>
-	<p><%=allEventsOwn[i].numberOfPeople%></p>
-	<img src="<%=allEventsOwn[i].img%>">
 
-	<form action='/events/<%= allEventsOwn[i]._id %>?_method=DELETE' method='POST'>
-		<button>Cancel Event</button>
-	</form>
-	
+
+<p>Name of Event: <%= allEventsOwn[i].title%></p>
+  <p>Event Description: <%= allEventsOwn[i].description%></p>
+  <p>Location: <%= allEventsOwn[i].location%></p>
+  <p>Date and Time: <%= allEventsOwn[i].date%></p>
+  <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
+  <p><%= allEventsOwn[i].img%></p>
+  <img src="<%=allEventsOwn[i].img%>">
+   <form action="/events/<%=allEventsOwn[i]._id%>?_method=DELETE" method="POST">
+          <button type="submit">Cancel Event</button>
+     <!-- <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a> -->
+     <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a>
+ </form>
+
 <%}%>
 
-<h2>Events to visit</h2>
+
+
+<h1>Events I am attending</h1>
 
 <% for (var i = 0; i < allEventsAtt.length; i++) { -%>
 	<p><%=allEventsAtt[i].title%></p>
 	<p><%= allEventsAtt[i].description %></p>
 	<img src="<%=allEventsAtt[i].img %>" style="width:250px; height:auto">
-	<form action='/events/attend/<%=allEventsAtt[i]._id%>?_method=DELETE' method='POST'>
-		<button>unable to visit</button>
-	</form>
 <% } -%>
 
-
-	
 <%- include ../partials/footer.ejs %>
+

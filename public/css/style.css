@@ -1,4 +1,130 @@
-.event_image{
-	width:200px;
-	height:auto;
+
+body {
+	padding: 30px;
+	background-color: lightskyblue;
+
+}
+
+h1 { 
+	font-family: 'Londrina Shadow', cursive;
+	text-shadow: 2px 2px gray;
+	font-size: 50px;
+	color: yellow;
+
+}
+
+
+footer {
+	position: fixed;
+  	left: 0;
+  	bottom: 0;
+  	width: 100%;
+  	background-color: lightsteelblue;
+  	color: white;
+  	text-align: center;
+}
+
+.eventContainerIndex{
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+img {
+	border-radius: 10px;
+	width: 200px;
+	height: 100px;
+}
+
+input {
+	border-radius: 10px;
+	font-family: 'Caveat', cursive;
+	font-size: 15pt;
+}
+
+button {
+	border-radius: 10px;
+	font-family: 'Caveat', cursive;
+	font-size: 15pt;
+}
+
+textarea{
+	border-radius: 10px;
+	font-family: 'Caveat', cursive;
+	font-size: 15pt;
+}
+
+h3 {
+	text-shadow: 1px 1px lightsteelblue;
+}
+
+a {
+	font-size: 25pt;
+	font-family: 'Caveat', cursive;
+	text-decoration: none;
+	color: pink;
+	text-shadow: 2px 2px gray;
+	margin: 10px;
+
+}
+
+a:hover {
+	color: deeppink;
+	text-decoration: none;
+}
+
+
+#eventsHomeLayout {
+	height: 500px;
+	width: 1000px;
+	display: flex;
+	flex-direction: row;
+}
+
+#eventsHomeLayout2 {
+	height: 500px;
+	width: 1000px;
+	display: flex;
+	flex-direction: row;
+}
+
+.homeEvents {
+	background-color: cornflowerblue;
+	border-radius: 20px;
+	border: solid 4px gray;
+	margin: 10px;
+	padding: 10px;
+	font-family: 'Neucha', cursive;
+	font-size: 18px;
+	width: 500px;
+	height: 400px;
+	overflow: hidden;
+
+}
+
+.indexEvents {
+	background-color: cornflowerblue;
+	border-radius: 20px;
+	border: solid 4px gray;
+	margin: 10px;
+	padding: 10px;
+	font-family: 'Neucha', cursive;
+	font-size: 25px;
+	color: midnightblue;
+	font-size: 18px;
+	width: 500px;
+	height: 400px;
+	overflow: hidden;
+
+}
+
+#participate {
+	font-family: 'Londrina Shadow', cursive;
+	text-shadow: 2px 2px gray;
+	color: lime;
+}
+
+li {
+	list-style-type: none;
 }
