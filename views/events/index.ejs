@@ -1,27 +1,27 @@
-
 <%- include ../partials/header.ejs %>
-
+<h1>All Upcoming events</h1>
 <nav>
-	<ul>
-		<li>
-			<a href="/events/new">Create New Event</a>
-		</li>
+  <ul>
+    <li>
+      <a href="/events/new">Create New Event</a>
+    </li>
 
-		<li>
-			<a href="/users">Home</a>
-		</li>
+    <li>
+      <a href="/users">Back to Home Page</a>
+    </li>
 
-	</ul>
+  </ul>
 
 </nav>
 
-
+<div id="eventContainerIndex">
 <% for (let i = 0; i < event.length; i++) {%>
+	<div class="indexEvent col-6"><p><%= event[i].title%></p>
+	<p><%= event[i].date %></p>
+	<p><%=event[i].description %></p>
+	<div id="participate"<a href="/users/attend/<%=event[i]._id%>">participate</a></div>	
 
-<p><%= event[i].title%></p>
-<p><%= event[i].date %></p>
-<p><%=event[i].description %></p>
-
-<% } %>
-
+	</div>
+<%}%>
+</div>
 <%- include ../partials/footer.ejs %>

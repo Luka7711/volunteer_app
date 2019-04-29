@@ -1,14 +1,49 @@
 <%- include ./partials/header.ejs %>
-	<h1>Home page</h1>
-<a href="/events/new">Organize your volunteer event</a> <br>
+	<h1>🌱✨ Better World ✨🌱</h1>
+
+
+<a href="/events">See all upcoming events</a><br><br>
+
+
+<!--  -->
+
+
 
 <% if(loggedIn){ %>
-					
+	<a href="/events/new">Organize your volunteer event</a> <br>	
 	<a href="/users/<%=user._id%>">See My Events</a></br>
 	<a href="/users/logout">Sign Out</a><br>
-<% }else {%>	
-	 <a href="/users/login">Sign In</a>
-	 <p>Don't have an account?</p>
-	 <a href="/users/register">Sign Up Here</a>
+<% } else {%>	
+<form action="/users/login" method="POST">
+  <input type="text" name="username" placeholder="username">
+  <input type="password" name="password" placeholder="password">
+
+  <button>Login</button>
+</form>
+
+<div id="homeEvent1">
+<p><%=allEvents[0].title%></p>
+<p><%=allEvents[0].description%></p>
+<p><img src="<%=allEvents[0].img %>" style="width:250px; height:auto">
+</div>
+
+
+<!-- 
+<% if(allEvents){ %>
+        <% for (let j = 0; j < allEvents.length; j++) { -%>
+            <div class="container_img">
+                <img class="event_image" src="<%= allEvents[j].img %>"
+                style="width:250px; height:auto">
+                <p><strong><%= allEvents[j].title %></strong></p>
+                <p><%= allEvents[j].date %></p>
+            </div>        
+        <%} %>
+        <a href="/events">see more</a>
+    <% } %> -->
+
+
+<small>Don't have an account? <a href="/users/register">Sign up here!</a></small>
 <% } %>
 <%- include ./partials/footer.ejs %>
+
+

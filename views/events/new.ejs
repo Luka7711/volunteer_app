@@ -1,29 +1,35 @@
 <%- include ../partials/header.ejs %>
-<nav>
-	<ul>
-	   <li>
-	      <a href="/events">Events Index page</a>
 
-	    </li> 
+<h1>Organize a new volunteer event</h1>
 
-	    <li>
-	      <a href="/">Events Index page</a>
 
-	    </li> 
-	</ul>
-</nav>
 
-<h3>Organize a new volunteer event</h3>
 
-  <form action="/events" method="POST">
-    Name of event<input type="text" name="title" />
-    Where will it be hosted?<input type="text" name="location" />
-    How many people are needed<input type="text" name="numberOfPeople" />
-    Describe the event<textarea type="text" name="description"></textarea>
-    Image URL(optional)<input type="text" name="img" />
-    When will it be hosted? <input type="datetime-local" id="meeting-time"
+       <form action="/events" method="POST">
+    <p>Name of the event: <input type="text" name="title" /></p>
+    <p>Where will it be hosted? <input type="text" name="location" /></p>
+    <p>How many people are needed? <input type="text" name="numberOfPeople" /></p>
+    <p>Describe the event: <textarea type="text" name="description"></textarea></p>
+    <p>When will it be hosted? <input type="datetime-local" id="meeting-time"
        name="date" value="2018-06-12T19:30"
-       min="2018-06-07T00:00" max="2026-06-14T00:00">
+       min="2018-06-07T00:00" max="2026-06-14T00:00"></p>
+       <p>Image URL(optional) <input type="text" name="img" /></p>
       <button type="submit">Create Event</button>
-  </form>
+  </form>   
+
+<nav>
+  <ul>
+     <li>
+        <a href="/events">See All Events</a>
+
+      </li> 
+
+      <li>
+        <a href="/users">Back to Home Page</a>
+
+      </li> 
+  </ul>
+</nav>
+  
 <%- include ../partials/footer.ejs %>
+

@@ -10,7 +10,7 @@ const userController = require('./controllers/userController.js')
 
 
 
-
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'))
 app.use(session({
