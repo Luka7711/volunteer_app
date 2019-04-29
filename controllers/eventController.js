@@ -58,6 +58,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 	try {
+		if(req.session.logged === true){
 		const foundEvents = await Event.find({})
 		const foundUser = await User.findById(req.session.userDbId)
 		console.log('this is current user')
@@ -68,6 +69,11 @@ router.get('/', async (req, res, next) => {
 			user: foundUser,
 			attendIds:userAttendingId
 		})
+	}
+	else{
+		res.redirect('/users/login')
+	}	
+
 	} catch(err){
 		next(err)
 	}
