@@ -56,18 +56,20 @@ router.post('/', async (req, res, next) => {
 
 //Index route
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
 	try {
 		const foundEvents = await Event.find({})
 		const foundUser = await User.findById(req.session.userDbId)
 		console.log('this is current user')
-		console.log(foundUser)
+		// console.log('this is all events')
+		const userAttendingId = foundUser.eventsAttending
 		res.render('events/index.ejs', {
-			event:foundEvents,
-			user:foundUser
+			event: foundEvents,
+			user: foundUser,
+			attendIds:userAttendingId
 		})
 	} catch(err){
-		res.send(err)
+		next(err)
 	}
 	
 })

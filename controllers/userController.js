@@ -11,8 +11,8 @@ router.get('/', async(req, res, next)=>{
 	try{
 	const foundUser = await User.findById(req.session.userDbId)
 	const events = await Event.find({})
-	console.log('this is all events in DB')
-	console.log(events)
+	// console.log('this is all events in DB')
+	// console.log(events)
 	res.render('home.ejs', {
 		loggedIn: req.session.logged,
 		user: foundUser,
@@ -147,7 +147,7 @@ router.get('/attend/:id', async(req, res, next) => {
 	currentUser.eventsAttending.push(attendEvent)
 	await currentUser.save()
 	console.log(currentUser)
-	res.send('success')
+	res.redirect('/users/' + req.session.userDbId)
 }catch(err){
 	next(err)
 }

@@ -16,12 +16,28 @@
 </nav>
 
 
-<% for (let i = 0; i < event.length; i++) {%>
+
+<% for (let i = 0; i < event.length; i++) { %>
 	<p><%= event[i].title%></p>
 	<p><%= event[i].date %></p>
 	<p><%=event[i].description %></p>
-	<a href="/users/attend/<%=event[i]._id%>">participate</a>
+	<p><%=attendIds[i] %></p>
+	
+	 <% const index = attendIds.findIndex(userEventId => { %>
+		 <% if(userEventId.toString() === event[i]._id.toString()){ %>
+		 			<% return true %>
+		 		<% } %>
+		 	<% })%>
+		 	
+
+		 	<% if(index === -1){ %>
+		 	<!--conditional based on value of variable index (index will be negative one if no match in attendIds -->
+		 <a href="/users/attend/<%=event[i]._id%>">participate</a>
+		<% } %> 							
+
+	  <!--findIndex-->
 <hr>
-<% } %>
+
+<%}%><!--for-->
 
 <%- include ../partials/footer.ejs %>
