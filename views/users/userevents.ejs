@@ -1,5 +1,5 @@
 <%- include ../partials/header.ejs %>
-<h2>Events I organized</h2>
+<h1>Events I organized</h1>
 <%for (let i = 0; i <allEventsOwn.length; i++) {%>
 
 <p>Name of Event: <%= allEventsOwn[i].title%></p>
@@ -19,7 +19,7 @@
 
 
 
-<h2>Events I am attending</h2>
+<h1>Events I am attending</h1>
 
 <% for (var i = 0; i < allEventsAtt.length; i++) { -%>
 	<p><%=allEventsAtt[i].title%></p>

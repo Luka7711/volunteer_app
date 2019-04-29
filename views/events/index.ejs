@@ -7,21 +7,22 @@
     </li>
 
     <li>
-      <a href="/users">Back to Home Page</a>
+      <a href="/users">Home</a>
     </li>
 
   </ul>
 
 </nav>
 
-<div id="eventContainerIndex">
+
 <% for (let i = 0; i < event.length; i++) {%>
-	<div class="indexEvent col-6"><p><%= event[i].title%></p>
+	<div class="indexEvent col-4"><p><%= event[i].title%></p>
 	<p><%= event[i].date %></p>
 	<p><%=event[i].description %></p>
-	<div id="participate"<a href="/users/attend/<%=event[i]._id%>">participate</a></div>	
+		<div id ="participate" >
+		<a href="/users/attend/<%=event[i]._id%>">participate</a></div>	
 
 	</div>
 <%}%>
-</div>
+
 <%- include ../partials/footer.ejs %>

@@ -4,10 +4,21 @@
 
 <a href="/events">See all upcoming events</a><br><br>
 
-
-<!--  -->
-
-
+<div id="eventsHomeLayout">
+	<% for (let i = 1; i <=6; i++){ %>
+	<!-- 	let howmany = 6;
+		// if there are less than 6 events, make howmany be event.length -->
+		
+			<div class="homeEvents">
+				<h3><%= allEvents[i].title%></h3>
+				<p><%= allEvents[i].date %></p>
+				<p><%=allEvents[i].description %></p>
+				<p><img src="<%=allEvents[i].img %>"></p> 
+				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
+			</div>
+		
+	<% }%>
+</div>
 
 <% if(loggedIn){ %>
 	<a href="/events/new">Organize your volunteer event</a> <br>	
@@ -21,25 +32,9 @@
   <button>Login</button>
 </form>
 
-<div id="homeEvent1">
-<p><%=allEvents[0].title%></p>
-<p><%=allEvents[0].description%></p>
-<p><img src="<%=allEvents[0].img %>" style="width:250px; height:auto">
-</div>
 
 
-<!-- 
-<% if(allEvents){ %>
-        <% for (let j = 0; j < allEvents.length; j++) { -%>
-            <div class="container_img">
-                <img class="event_image" src="<%= allEvents[j].img %>"
-                style="width:250px; height:auto">
-                <p><strong><%= allEvents[j].title %></strong></p>
-                <p><%= allEvents[j].date %></p>
-            </div>        
-        <%} %>
-        <a href="/events">see more</a>
-    <% } %> -->
+
 
 
 <small>Don't have an account? <a href="/users/register">Sign up here!</a></small>

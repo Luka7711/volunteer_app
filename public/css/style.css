@@ -42,6 +42,8 @@ footer {
 
 img {
 	border-radius: 10px;
+	width: 200px;
+	height: 100px;
 }
 
 input {
@@ -62,6 +64,10 @@ textarea{
 	font-size: 15pt;
 }
 
+h3 {
+	text-shadow: 1px 1px lightsteelblue;
+}
+
 a {
 	font-size: 25pt;
 	font-family: 'Caveat', cursive;
@@ -77,15 +83,31 @@ a:hover {
 	text-decoration: none;
 }
 
-/*#homeEvent1 {
-		background-color: cornflowerblue;
+
+#eventsHomeLayout {
+	height: 2000px;
+	width: 2000px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+   overflow-x: auto;
+   -webkit-overflow-scrolling: touch;
+   -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.homeEvents {
+	background-color: cornflowerblue;
 	border-radius: 20px;
-	border: solid 4px limegreen;
+	border: solid 4px gray;
 	margin: 10px;
 	padding: 10px;
 	font-family: 'Neucha', cursive;
-	font-size: 25px;
-}*/
+	font-size: 18px;
+	width: 500px;
+	height: 400px;
+	overflow: hidden;
+	
+}
 
 #participate {
 	font-family: 'Londrina Shadow', cursive;
