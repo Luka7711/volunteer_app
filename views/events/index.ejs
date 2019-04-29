@@ -22,7 +22,7 @@
 	<p><%= event[i].date %></p>
 	<p><%=event[i].description %></p>
 	
-	
+
 	 <% const index = attendIds.findIndex(userEventId => { %>
 		 <% if(userEventId.toString() === event[i]._id.toString()){ %>
 		 			<% return true %>
