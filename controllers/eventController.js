@@ -6,7 +6,14 @@ const User = require('../models/user')
 
 //Create new event
 router.get('/new', (req, res) => {
-  res.render('events/new.ejs')
+
+	if(req.session.logged){
+	res.render('events/new.ejs')
+}else{
+	req.session.message = 'Organize an event? Sign in or Sign up'
+	res.redirect('/users/login')
+}
+
 })
 
 /// when user creates own event, create route
@@ -51,17 +58,30 @@ router.post('/', async (req, res, next) => {
 
 //Index route
 
-router.get('/', async (req, res) => {
-  try {
-    const foundEvents = await Event.find({})
-    res.render('events/index.ejs', {
-      event: foundEvents
-    })
-  } catch(err){
-    res.send(err)
-  }
-  
+
+router.get('/', async (req, res, next) => {
+	try {
+		if(req.session.logged === true){
+		const foundEvents = await Event.find({})
+		const foundUser = await User.findById(req.session.userDbId)
+		console.log('this is current user')
+		// console.log('this is all events')
+		const userAttendingId = foundUser.eventsAttending
+		res.render('events/index.ejs', {
+			event: foundEvents,
+			user: foundUser,
+			attendIds:userAttendingId
+		})
+	}
+	else{
+		res.redirect('/users/login')
+	}	
+
+	} catch(err){
+		next(err)
+	}
 })
+	
 
 //Index for Home Page:
 router.get('/users', async (req, res) => {
@@ -145,17 +165,9 @@ router.get('/:id/edit', (req, res) => {
   
 })
 
-//update
-router.get('/:id/edit', (req, res) => {
-  res.render('events/edit.ejs', {
-    event: Event[req.params.id],
-    id: req.params.id
-  })
-})
-
 router.put('/:id', (req, res) => {
   Event.findByIdAndUpdate(req.params.id, 
-    req.body, (err, updatedPhoto)=>{
+    req.body, (err, updatedPhoto) => {
       if (err){
         res.send(err)
       }else{
@@ -163,6 +175,30 @@ router.put('/:id', (req, res) => {
       }
     })
 })
+
+
+//unable to visit an event
+//find current user
+//find current removing event
+//remove attend event id from users.eventsAttend object
+
+router.delete('/attend/:id', async(req, res, next) => {
+	try{
+		const user  = await User.findById(req.session.userDbId)
+		const event = await Event.findById(req.params.id)
+		user.eventsAttending.remove(event)
+		user.save((err, updatedUser) => {
+			res.redirect('/users/' + req.session.userDbId)
+		})
+	}catch(err){
+	next(err)
+}
+})
+
+
+
+
+
 
 
 

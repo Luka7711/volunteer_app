@@ -4,6 +4,7 @@
 
 <a href="/events">See all upcoming events</a><br><br>
 
+
 <div id="eventsHomeLayout">
 	<% for (let i = 0; i <=2; i++){ %>
 	<!-- 	let howmany = 6;
@@ -37,6 +38,7 @@
 </div>
 
 
+
 <% if(loggedIn){ %>
 	<a href="/events/new">Organize your volunteer event</a> <br>	
 	<a href="/users/<%=user._id%>">See My Events</a></br>
@@ -56,6 +58,6 @@
 
 <small>Don't have an account? <a href="/users/register">Sign up here!</a></small>
 <% } %>
-<%- include ./partials/footer.ejs %>
+	
 
-
+<%- include ./partials/footer.ejs -%>

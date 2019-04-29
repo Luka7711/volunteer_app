@@ -2,6 +2,7 @@
 <h1>Events I organized</h1>
 <%for (let i = 0; i <allEventsOwn.length; i++) {%>
 
+
 <p>Name of Event: <%= allEventsOwn[i].title%></p>
   <p>Event Description: <%= allEventsOwn[i].description%></p>
   <p>Location: <%= allEventsOwn[i].location%></p>
@@ -28,3 +29,4 @@
 <% } -%>
 
 <%- include ../partials/footer.ejs %>
+
