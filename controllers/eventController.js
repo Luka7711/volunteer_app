@@ -93,7 +93,23 @@ router.delete('/:id', (req, res) => {
 	})
 })
 
+//unable to visit an event
+//find current user
+//find current removing event
+//remove attend event id from users.eventsAttend object
 
+router.delete('/attend/:id', async(req, res, next) => {
+	try{
+		const user  = await User.findById(req.session.userDbId)
+		const event = await Event.findById(req.params.id)
+		user.eventsAttending.remove(event)
+		user.save((err, updatedUser) => {
+			res.redirect('/users/' + req.session.userDbId)
+		})
+	}catch(err){
+	next(err)
+}
+})
 
 
 

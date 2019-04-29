@@ -29,15 +29,11 @@
 		 		<% } %>
 		 	<% })%>
 		 	
-
 		 	<% if(index === -1){ %>
-		 	<!--conditional based on value of variable index (index will be negative one if no match in attendIds -->
-		 <a href="/users/attend/<%=event[i]._id%>">participate</a>
-		<% } %> 							
+		 		<!--conditional based on value of variable index (index will be negative one if no match in attendIds -->
+		 		<a href="/users/attend/<%=event[i]._id%>">participate</a>
+			<% } %> 							
 
-	  <!--findIndex-->
-<hr>
-
-<%}%><!--for-->
-
+		<hr>
+	<%}%>
 <%- include ../partials/footer.ejs %>
