@@ -76,17 +76,24 @@ a:hover {
 
 
 #eventsHomeLayout {
-	height: 500px;
+	height: 1000px;
 	width: 1000px;
-	display: flex;
+	/*display: flex;
 	flex-direction: row;
-}
+	overflow: hidden;*/
+	}
 
 #eventsHomeLayout2 {
 	height: 500px;
-	width: 1000px;
-	display: flex;
+	width: 1500px;
+	/*display: flex;
 	flex-direction: row;
+	overflow: hidden;*/
+}
+#eventsHomeLayout2:after{
+	content:'';
+	clear:both;
+	display: table;
 }
 
 .homeEvents {
@@ -97,10 +104,10 @@ a:hover {
 	padding: 10px;
 	font-family: 'Neucha', cursive;
 	font-size: 18px;
-	width: 500px;
+	width: 350px;
 	height: 400px;
 	overflow: hidden;
-
+	float:left;
 }
 
 .indexEvents {
