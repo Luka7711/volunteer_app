@@ -115,8 +115,13 @@ router.get('/logout', (req, res) => {
 
 
 // populating multiple events in user database
-router.get('/:id', (req, res) => {
+
+//find all events user created
+//find all attendants of event created events
+
+router.get('/:id', async(req, res, next) => {
 	if(req.session.logged){
+ const foundUser = await User.findById(req.params.id)
 	User.findById(req.params.id)
 	.populate('eventsOwned')
 	.populate('eventsAttending')
@@ -133,20 +138,25 @@ router.get('/:id', (req, res) => {
 
 //participate in someones event
 router.get('/attend/:id', async(req, res, next) => {
-	//find current user
-	//add id to addendin event
+	//find an Event
+  //
+
+  //find current user 
+  //push current user id into owner attendants array
+
 	try{
-	const currentUser = await User.findById(req.session.userDbId)
-	const attendEvent = await Event.findById(req.params.id)
-	console.log('this is current event')
-	console.log(attendEvent)
-	currentUser.eventsAttending.push(attendEvent)
-	await currentUser.save()
-	console.log(currentUser)
-	res.redirect('/users/' + req.session.userDbId)
-}catch(err){
-	next(err)
-}
+
+  	const currentUser = await User.findById(req.session.userDbId)
+  	const attendEvent = await Event.findById(req.params.id)
+    attendEvent.attending.push(currentUser)
+    await attendEvent.save()
+  	currentUser.eventsAttending.push(attendEvent)
+  	await currentUser.save()
+  	console.log(currentUser)
+  	res.redirect('/users/' + req.session.userDbId)
+  }catch(err){
+  	next(err)
+  }
 })
 
 

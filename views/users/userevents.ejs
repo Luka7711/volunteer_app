@@ -8,8 +8,9 @@
   <p>Location: <%= allEventsOwn[i].location%></p>
   <p>Date and Time: <%= allEventsOwn[i].date%></p>
   <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
-  <p><%= allEventsOwn[i].img%></p>
+  <p>People coming: <%= allEventsOwn[i].attending.length %></p>
   <img src="<%=allEventsOwn[i].img%>">
+
    <form action="/events/<%=allEventsOwn[i]._id%>?_method=DELETE" method="POST">
           <button type="submit">Cancel Event</button>
      <!-- <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a> -->

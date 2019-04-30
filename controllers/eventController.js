@@ -70,7 +70,7 @@ router.get('/', async (req, res, next) => {
 		res.render('events/index.ejs', {
 			event: foundEvents,
 			user: foundUser,
-			attendIds:userAttendingId
+			attendIds: userAttendingId
 		})
 	}
 	else{
