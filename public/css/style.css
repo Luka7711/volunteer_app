@@ -125,6 +125,11 @@ a:hover {
 	color: lime;
 }
 
+#seeDetails {
+	
+	position: absolute;
+}
+
 li {
 	list-style-type: none;
 }

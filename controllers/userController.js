@@ -117,6 +117,7 @@ router.get('/logout', (req, res) => {
 // populating multiple events in user database
 router.get('/:id', (req, res) => {
 	if(req.session.logged){
+
 	User.findById(req.params.id)
 	.populate('eventsOwned')
 	.populate('eventsAttending')

@@ -25,11 +25,15 @@
 <% for (var i = 0; i < allEventsAtt.length; i++) { -%>
 	<p><%=allEventsAtt[i].title%></p>
 	<p><%= allEventsAtt[i].description %></p>
-	<img src="<%=allEventsAtt[i].img %>" style="width:250px; height:auto">
+	<img src="<%=allEventsAtt[i].img %>">
 	<form action='/events/attend/<%=allEventsAtt[i]._id%>?_method=DELETE' method='POST'>
 		<button>unable to visit</button>
 	</form>
 <% } -%>
+
+  <a href="/events/new">Organize a new volunteer event</a> <br>  
+  <a href="/users">Back to Home Page</a><br>
+  <a href="/users/logout">Sign Out</a><br>
 
 <%- include ../partials/footer.ejs %>
 

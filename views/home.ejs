@@ -15,7 +15,7 @@
 				<p><%= allEvents[i].date %></p>
 				<p><%=allEvents[i].description %></p>
 				<p><img src="<%=allEvents[i].img %>"></p> 
-				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
+				<div id="seeDetails"> <a href="/events/<%=allEvents[i]._id%>/">See details</a></div>
 			</div>
 		
 	<% }%>

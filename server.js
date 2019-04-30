@@ -3,6 +3,10 @@ const app 				= express();
 const bodyParser 		= require('body-parser');
 const methodOverride 	= require('method-override');
 const session			= require('express-session');
+require('dotenv').config()
+
+
+const PORT = process.env.PORT
 
 require ('./db/db')
 
@@ -12,7 +16,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'))
 app.use(session({
-	secret: 'keepitsafe',
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }));
@@ -29,6 +33,6 @@ app.get('/', (req, res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
 	console.log('server is cool')
 })
