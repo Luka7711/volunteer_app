@@ -9,9 +9,6 @@ require('dotenv').config()
 const PORT = process.env.PORT
 
 require('dotenv').config()
-console.log("here's the progress env")
-console.log(process.env)
-const PORT = process.env.PORT
 require ('./db/db')
 
 
