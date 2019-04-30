@@ -7,10 +7,51 @@
 <!--write a for loop
 
 -->
+<div id='eventHomeLayout'>
+<% function getSix() { %>
 
+  <% for(let i=0; i<= 5; i++){%>
+   			<div class="homeEvents">
+				<h3><%= allEvents[i].title%></h3>
+				<p><%= allEvents[i].date %></p>
+				<p><%=allEvents[i].description %></p>
+				<p><img src="<%=allEvents[i].img %>"></p> 
+				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
+			</div>
+  <% } %>
 
+<% } %>
 
+</div>
 
+<div id="eventsHomeLayout2">
+<% if(allEvents){ %>
+
+<!-- uf length of events less than 6 print them -->
+<% for(let i=0; i < allEvents.length; i++){ %>
+   <% if(allEvents.length <=6){ %>
+   			<div class="homeEvents">
+				<h3><%= allEvents[i].title%></h3>
+				<p><%= allEvents[i].date %></p>
+				<p><%=allEvents[i].description %></p>
+				<p><img src="<%=allEvents[i].img %>"></p> 
+				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
+			</div>
+ 
+  <% } else if(allEvents.length > 6){ %>    
+        <% break; %>   
+ <% } %> 
+<% } %>
+
+<% } %>
+
+<!-- if length of events bigger than 6, display only six -->
+<% if(allEvents.length > 6){ %>
+   <% getSix() %> 
+<% } %>
+</div>
+
+<div style="clear:both"></div>
 <% if(loggedIn){ %>
 	<a href="/events/new">Organize your volunteer event</a> <br>	
 	<a href="/users/<%=user._id%>">See My Events</a></br>
