@@ -1,35 +1,39 @@
 <%- include ../partials/header.ejs %>
 <h1>Events I organized</h1>
-<%for (let i = 0; i <allEventsOwn.length; i++) {%>
 
+<div id="eventsOrganized">
+  <%for (let i = 0; i <allEventsOwn.length; i++) {%>
 
-<p>Name of Event: <%= allEventsOwn[i].title%></p>
-  <p>Event Description: <%= allEventsOwn[i].description%></p>
-  <p>Location: <%= allEventsOwn[i].location%></p>
-  <p>Date and Time: <%= allEventsOwn[i].date%></p>
-  <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
-  <p><%= allEventsOwn[i].img%></p>
-  <img src="<%=allEventsOwn[i].img%>">
-   <form action="/events/<%=allEventsOwn[i]._id%>?_method=DELETE" method="POST">
-          <button type="submit">Cancel Event</button>
-     <!-- <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a> -->
-     <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a>
- </form>
+    <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit My Event</a>
+    <p>Name of Event: <%= allEventsOwn[i].title%></p>
+    <p>Event Description: <%= allEventsOwn[i].description%></p>
+    <p>Location: <%= allEventsOwn[i].location%></p>
+    <p>Date and Time: <%= allEventsOwn[i].date%></p>
+    <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
+    <p><%= allEventsOwn[i].img%></p>
+    <img src="<%=allEventsOwn[i].img%>">
+      <form action="/events/<%=allEventsOwn[i]._id%>?_method=DELETE" method="POST">
+            <button type="submit">Cancel Event</button>
+       <!-- <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit</a> -->
+       
+      </form>
 
-<%}%>
-
+  <%}%>
+</div>
 
 
 <h1>Events I am attending</h1>
 
-<% for (var i = 0; i < allEventsAtt.length; i++) { -%>
-	<p><%=allEventsAtt[i].title%></p>
-	<p><%= allEventsAtt[i].description %></p>
-	<img src="<%=allEventsAtt[i].img %>">
-	<form action='/events/attend/<%=allEventsAtt[i]._id%>?_method=DELETE' method='POST'>
-		<button>unable to visit</button>
-	</form>
-<% } -%>
+<div id="eventsAttending">
+  <% for (var i = 0; i < allEventsAtt.length; i++) { -%>
+  	<p><%=allEventsAtt[i].title%></p>
+  	<p><%= allEventsAtt[i].description %></p>
+  	<img src="<%=allEventsAtt[i].img %>">
+  	 <form action='/events/attend/<%=allEventsAtt[i]._id%>?_method=DELETE' method='POST'>
+  		  <button>unable to participate</button>
+  	 </form>
+  <% } -%>
+</div>
 
   <a href="/events/new">Organize a new volunteer event</a> <br>  
   <a href="/users">Back to Home Page</a><br>

@@ -3,19 +3,30 @@
   <title>Show Page</title>
 </head>
 <body>
+<% for (let i = 0; i < event.length; i++) {%>
+  <div class="indexEvents"><p><%= event[i].title%></p>
+  <p>When: <%= event[i].date %></p>
+  <p>Description: <%=event[i].description %></p>
+  <p>Location: <%=event[i].location %></p>
+  <p>Number of people needed: <%=event[i].numberOfPeople%></p>
+  <p><img src="<%=event[i].img %>"></p> 
+  
 
 
-  <h1><%=event.title%></h1>
-  <form action="/events" method="PUT">
-  <p>Name of Event: <%= event.title%></p>
-  <p>Event Description: <%= event.description%></p>
-  <p>Location: <%= event.location%></p>
-  <p>Date and Time: <%= event.date%></p>
-  <p>Number of people needed: <%= event.numberOfPeople%></p> 
-  <p><img src="<%=event.img%>"></p>
-  <button>Participate in Event</button>
-</form>
+     <% const index = attendIds.findIndex(userEventId => { %>
+     <% if(userEventId.toString() === event[i]._id.toString()){ %>
+          <% return true %>
+        <% } %>
+      <% })%>
+      
+      <% if(index === -1){ %>
+        <!--conditional based on value of variable index (index will be negative one if no match in attendIds -->
+        <a href="/users/attend/<%=event[i]._id%>">participate</a>
+      <% } %>   
+  </div>
+<%}%>
 
+  
 <a href="/users">Back to Home page</a>
 
 <%- include ../partials/footer.ejs %> 
