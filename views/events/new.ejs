@@ -10,9 +10,12 @@
     <p>Where will it be hosted? <input type="text" name="location" /></p>
     <p>How many people are needed? <input type="text" name="numberOfPeople" /></p>
     <p>Describe the event: <textarea type="text" name="description"></textarea></p>
-    <p>When will it be hosted? <input type="datetime-local" id="meeting-time"
-       name="date" value="2018-06-12T19:30"
-       min="2018-06-07T00:00" max="2026-06-14T00:00"></p>
+    <p>Date it will be hosted: <input type="date" id="meeting-date"
+       name="date" value="2018-06-12T7:30pm"
+       min="2019-04-30T00:00" max="2026-06-14T00:00"></p>
+       <p>Time it will be hosted: <input type="time" id="meeting-time"
+       name="date" value="2018-06-12T7:30pm"
+       min="2019-04-30T00:00" max="2026-06-14T00:00"></p>
        <p>Image URL(optional) <input type="text" name="img" /></p>
       <button type="submit">Create Event</button>
   </form>   

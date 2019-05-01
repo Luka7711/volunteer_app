@@ -1,7 +1,26 @@
 <%- include ./partials/header.ejs %>
 	<h1>🌱✨ Better World ✨🌱</h1>
 
+<header>
+<div style="clear:both"></div>
+<% if(loggedIn){ %>
+	<a href="/events/new">Organize your volunteer event</a> <br>	
+	<a href="/users/<%=user._id%>">See My Events</a></br>
+	<a href="/users/logout">Sign Out</a><br>
+<% } else {%>	
+<form action="/users/login" method="POST">
+  	<div id="loginContainer">
+	  <input type="text" name="username" placeholder="username">
+	  <input type="password" name="password" placeholder="password">
+  <button>Login</button>
+  </div>
+</form>
 
+ <a href="/users/register">Or sign up here!</a>
+<% } %>
+</header>	
+
+	
 <a href="/events">See all upcoming events</a><br><br>
 
 <div id='eventHomeLayout'>
@@ -10,7 +29,8 @@
   <% for(let i=0; i<= 5; i++){%>
    			<div class="homeEvents">
 				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
+					<p>When: <%= allEvents[i].date.toDateString() %></p>
+	<p>What Time: <%= allEvents[i].date.getHours()%>:<%= allEvents[i].date.getMinutes()%> </p>
 				<p><%=allEvents[i].description %></p>
 				<p><img src="<%=allEvents[i].img %>"></p> 
 				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
@@ -32,10 +52,11 @@
    <% if(allEvents.length <=6){ %>
    			<div class="homeEvents">
 				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
+					<p>When: <%= allEvents[i].date.toDateString() %></p>
+	<p>What Time: <%= allEvents[i].date.getHours()%>:<%= allEvents[i].date.getMinutes()%> </p>
 				<p><%=allEvents[i].description %></p>
 				<p><img src="<%=allEvents[i].img %>"></p> 
-				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
+				<div id="seeDetails"><a href="/events/<%=allEvents[i]._id%>/">See details</a></div>
 			</div>
  
   <% } else if(allEvents.length > 6){ %>    
@@ -49,29 +70,11 @@
 <% if(allEvents.length > 6){ %>
    <% getSix() %> 
 <% } %>
+
 </div>
-
-<div style="clear:both"></div>
-<% if(loggedIn){ %>
-	<a href="/events/new">Organize your volunteer event</a> <br>	
-	<a href="/users/<%=user._id%>">See My Events</a></br>
-	<a href="/users/logout">Sign Out</a><br>
-<% } else {%>	
-<form action="/users/login" method="POST">
-  <input type="text" name="username" placeholder="username">
-  <input type="password" name="password" placeholder="password">
-
-  <button>Login</button>
-</form>
+<p>.</p>
 
 
-
-
-
-
-<small>Don't have an account? <a href="/users/register">Sign up here!</a></small>
-<% } %>
-	
 
 <%- include ./partials/footer.ejs -%>
 

@@ -27,7 +27,8 @@ const eventController = require('./controllers/eventController.js')
 app.use('/events', eventController);
 const userController = require('./controllers/userController.js')
 app.use('/users', userController);
-
+const aboutController = require('./controllers/aboutController.js')
+app.use('/about', aboutController);
 
 app.get('/', (req, res) => {
 	res.render('root.ejs')

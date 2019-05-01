@@ -6,7 +6,7 @@ const eventSchema = new mongoose.Schema({
 	numberOfPeople: {type: Number, required: true},
 	description: {type: String, required: true},
 	img: String,
-	date: {type: Date, required: true},
+	date: {type: Date, default: Date.now, required: true},
 	
 	///the ID of user who created event
 	organizer: {

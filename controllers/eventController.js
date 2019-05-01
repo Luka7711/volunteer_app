@@ -112,7 +112,18 @@ router.get('/:id', (req, res) => {
   })  
 })
 
-
+router.get('/about', (req, res) => {
+  Event.findById(req.params.id, (err, foundEvents) => {
+    if(err){
+      res.send(err);
+    }else{
+      console.log(foundEvents);
+      res.render('events/show.ejs', {
+        event: foundEvents
+      })
+    }
+  })  
+})
 
 // router.get('/:id', (req, res) => {
 //   Event.findById(req.params.id, (err, foundEvents) => {

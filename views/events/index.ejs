@@ -16,8 +16,9 @@
 
 
 <% for (let i = 0; i < event.length; i++) {%>
-	<div class="indexEvents"><p><%= event[i].title%></p>
-	<p>When: <%= event[i].date %></p>
+	<div class="indexEvents"><h3><%= event[i].title%></h3>
+	<p>When: <%= event[i].date.toDateString() %></p>
+	<p>What Time: <%= event[i].date.getHours()%>:<%= event[i].date.getMinutes()%> </p>
 	<p>Description: <%=event[i].description %></p>
 	<p>Location: <%=event[i].location %></p>
 	<p>Number of people needed: <%=event[i].numberOfPeople%></p>

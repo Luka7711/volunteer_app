@@ -1,16 +1,20 @@
 <%- include ../partials/header.ejs %>
 <h1>Events I organized</h1>
+<header>
+  <a href="/events/new">Organize a new volunteer event</a> <br>  
+  <a href="/users">Back to Home Page</a><br>
+  <a href="/users/logout">Sign Out</a><br>
+  </header>
 
-<div id="eventsOrganized">
   <%for (let i = 0; i <allEventsOwn.length; i++) {%>
-
-    <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit My Event</a>
+<div id="eventsOrganized">
+    <a href="/events/<%=allEventsOwn[i]._id%>/edit">Edit Event " <%= allEventsOwn[i].title%>"</a>
     <p>Name of Event: <%= allEventsOwn[i].title%></p>
     <p>Event Description: <%= allEventsOwn[i].description%></p>
     <p>Location: <%= allEventsOwn[i].location%></p>
-    <p>Date and Time: <%= allEventsOwn[i].date%></p>
+   <p>When: <%= allEventsOwn[i].date.toDateString() %></p>
+  <p>What Time: <%= allEventsOwn[i].date.getHours()%>:<%= allEventsOwn[i].date.getMinutes()%> </p>
     <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
-    <p><%= allEventsOwn[i].img%></p>
     <img src="<%=allEventsOwn[i].img%>">
       <form action="/events/<%=allEventsOwn[i]._id%>?_method=DELETE" method="POST">
             <button type="submit">Cancel Event</button>
@@ -35,9 +39,7 @@
   <% } -%>
 </div>
 
-  <a href="/events/new">Organize a new volunteer event</a> <br>  
-  <a href="/users">Back to Home Page</a><br>
-  <a href="/users/logout">Sign Out</a><br>
+
 
 <%- include ../partials/footer.ejs %>
 
