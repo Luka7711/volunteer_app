@@ -6,7 +6,11 @@
 <p>Name of Event: <%= allEventsOwn[i].title%></p>
   <p>Event Description: <%= allEventsOwn[i].description%></p>
   <p>Location: <%= allEventsOwn[i].location%></p>
-  <p>Date and Time: <%= allEventsOwn[i].date%></p>
+ 
+  <% let dateOf = allEventsOwn[i].date.toString()%>
+  <%dateOf = dateOf.slice(3, 24)%>
+  
+  <p>Date and Time:<%=dateOf%></p>
   <p>Number of people needed: <%= allEventsOwn[i].numberOfPeople%></p> 
   <p>People coming: <%= allEventsOwn[i].attending.length %></p>
   <img src="<%=allEventsOwn[i].img%>">

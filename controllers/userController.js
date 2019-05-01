@@ -14,7 +14,6 @@ router.get('/', async(req, res, next)=>{
 	const events = await Event.find({})
 	console.log('this is all events in DB')
 	console.log(events)
-
 	res.render('home.ejs', {
 		loggedIn: req.session.logged,
 		user: foundUser,

@@ -13,7 +13,9 @@
   <% for(let i=0; i<= 5; i++){%>
    			<div class="homeEvents">
 				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
+				<% let dateOf = allEvents[i].date.toString()%>
+  				<%dateOf = dateOf.slice(3, 24)%>
+				<p><%= dateOf%></p>
 				<p><%=allEvents[i].description %></p>
 				<p><img src="<%=allEvents[i].img %>"></p> 
 				<a href="/events/<%=allEvents[i]._id%>/">See details</a>
@@ -32,7 +34,9 @@
    <% if(allEvents.length <=6){ %>
    			<div class="homeEvents">
 				<h3><%= allEvents[i].title%></h3>
-				<p><%= allEvents[i].date %></p>
+				<% let dateOf = allEvents[i].date.toString()%>
+  				<%dateOf = dateOf.slice(3, 24)%>
+				<p><%= dateOf%></p>
 				<p><%=allEvents[i].description %></p>
 				<p><img src="<%=allEvents[i].img %>"></p> 
 				<a href="/events/<%=allEvents[i]._id%>/">See details</a>

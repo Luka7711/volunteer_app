@@ -7,6 +7,9 @@
   <p>Name of Event: <%= event.title%></p>
   <p>Event Description: <%= event.description%></p>
   <p>Location: <%= event.location%></p>
+  <% let dateOf = event.date.toString()%>
+  <%dateOf = dateOf.slice(3, 24)%>
+	<p><%= dateOf%></p>
   <p>Date and Time: <%= event.date%></p>
   <p>Number of people needed: <%= event.numberOfPeople%></p> 
   <p><img src="<%=event.img%>"></p>

@@ -41,12 +41,7 @@ router.post('/', async (req, res, next) => {
     // save foundUser
     
     const foundEvent = await Event.findById(createdEvent._id)
-    console.log('this is event:')
-    console.log(foundEvent)
-    console.log('this is user')
-    console.log(foundUser)
-    foundUser.eventsOwned.push(foundEvent)
-    
+    foundUser.eventsOwned.push(foundEvent)    
     await foundUser.save()
     res.redirect('/events')
     
@@ -64,8 +59,6 @@ router.get('/', async (req, res, next) => {
 		if(req.session.logged === true){
 		const foundEvents = await Event.find({})
 		const foundUser = await User.findById(req.session.userDbId)
-		console.log('this is current user')
-		// console.log('this is all events')
 		const userAttendingId = foundUser.eventsAttending
 		res.render('events/index.ejs', {
 			event: foundEvents,
@@ -87,8 +80,6 @@ router.get('/', async (req, res, next) => {
 router.get('/users', async (req, res) => {
   try {
     const foundEvents = await Event.find({})
-    console.log("These are your found Events");
-    console.log(foundEvents);
     res.render('home.ejs', {
       eventsForHome: foundEvents
     })
@@ -114,25 +105,9 @@ router.get('/:id', (req, res) => {
 
 
 
-// router.get('/:id', (req, res) => {
-//   Event.findById(req.params.id, (err, foundEvents) => {
-//     if(err){
-//       res.send(err);
-//     }else{
-//       console.log(foundEvents);
-//       res.render('events/show.ejs', {
-//         eventForHome: foundEvents
-//       })
-//     }
-//   })  
-// })
-
-//delete route
-
+//DELETE CREATED EVENT
 router.delete('/:id', (req, res) => {
   Event.findByIdAndRemove(req.params.id, (err, deletedEvent) => {
-    console.log('deleted event is:')
-    console.log(deletedEvent)
     User.findOne({'eventsOwned':req.params.id}, (err, foundUser) =>{
       if(err){
         res.send(err)
@@ -165,6 +140,7 @@ router.get('/:id/edit', (req, res) => {
   
 })
 
+//UPDATE EVENT
 router.put('/:id', (req, res) => {
   Event.findByIdAndUpdate(req.params.id, 
     req.body, (err, updatedPhoto) => {
@@ -177,15 +153,8 @@ router.put('/:id', (req, res) => {
 })
 
 
-//unable to visit an event
-//find current user
-//find current removing event
-//remove attend event id from users.eventsAttend object
 
-//find an Event 
-//remove attending id of user from event Attendant object
-
-
+//UNABLE TO VISIT EVENT
 router.delete('/attend/:id', async(req, res, next) => {
 	try{
 		const user  = await User.findById(req.session.userDbId)
