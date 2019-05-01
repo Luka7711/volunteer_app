@@ -128,9 +128,8 @@ h3 {
 }
 
 
-#seeDetails {
-	bottom: 0;
-	position: fixed;
+small {
+	color: lightskyblue;
 }
 
 a {
