@@ -8,7 +8,8 @@
   <p>Name of Event: <%= event.title%></p>
   <p>Event Description: <%= event.description%></p>
   <p>Location: <%= event.location%></p>
-  <p>Date and Time: <%= event.date%></p>
+  <p>When: <%= event.date.toDateString() %></p>
+  <p>What Time: <%= event.date.getHours()%>:<%= event.date.getMinutes()%> </p>
   <p>Number of people needed: <%= event.numberOfPeople%></p> 
   <p><img src="<%=event.img%>"></p>
 
